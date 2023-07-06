@@ -1,4 +1,5 @@
 ﻿using API.Models.Fornecedor;
+using API.Models.Produto;
 using API.Models.TipoDespesa;
 using API.Models.Tributacao;
 using Microsoft.EntityFrameworkCore;
@@ -13,6 +14,7 @@ namespace API.Models
         public DbSet<TipoDespesas> TipoDespesa { get; set; }
         public DbSet<Fornecedores> Fornecedor { get; set; }
         public DbSet<Tributacoes> Tributacao { get; set; }
+        public DbSet<Produtos> Produto { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

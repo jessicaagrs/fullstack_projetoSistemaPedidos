@@ -11,6 +11,9 @@ using API.Services.Fornecedor;
 using API.Services.Tributacao;
 using API.Models.Tributacao;
 using API.Infra.Tributacao;
+using API.Models.Produto;
+using API.Infra.Produto;
+using API.Services.Produto;
 
 namespace Api
 {
@@ -29,6 +32,8 @@ namespace Api
             serviceDescriptors.AddTransient<IFornecedorService, FornecedorService>();
             serviceDescriptors.AddTransient<ITributacaoRepositorio, TributacaoRepositorio>();
             serviceDescriptors.AddTransient<ITributacaoService, TributacaoService>();
+            serviceDescriptors.AddTransient<IProdutoRepositorio, ProdutoRepositorio>();
+            serviceDescriptors.AddTransient<IProdutoService, ProdutoService>();
         }
     }
 }

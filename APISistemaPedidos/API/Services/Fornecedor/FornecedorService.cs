@@ -33,6 +33,11 @@ namespace API.Services.Fornecedor
             if (fornecedor is null)
                 throw new Exception("Dados inválidos, favor revisar o preenchimento");
 
+            var tipoDespesaValida = ValidarTipoDespesa(fornecedor.TipoDespesaId);
+
+            if (!tipoDespesaValida)
+                throw new Exception("Despesa inválida.");
+
             var fornecedores = _fornecedorRepositorio.Atualizar(fornecedor);
             return fornecedores;
         }
