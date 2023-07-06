@@ -22,7 +22,7 @@ namespace API.Controllers
         {
             try
             {
-               var tipoDespesas =  _tipoDespesaService.ObterTodos();
+                var tipoDespesas = _tipoDespesaService.ObterTodos();
                 return Ok(tipoDespesas);
             }
             catch (Exception ex)
@@ -37,7 +37,7 @@ namespace API.Controllers
         {
             try
             {
-               var tipoDespesas =  _tipoDespesaService.Adicionar(tipoDespesa);
+                var tipoDespesas = _tipoDespesaService.Adicionar(tipoDespesa);
                 return Ok(tipoDespesas);
             }
             catch (Exception ex)

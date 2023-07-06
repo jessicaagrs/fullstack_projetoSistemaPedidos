@@ -8,5 +8,7 @@ namespace API.Models.TipoDespesa
         public int Id { get; set; }
         public string Descricao { get; set; }
 
+        public string Grupo { get; set; }
+
     }
 }

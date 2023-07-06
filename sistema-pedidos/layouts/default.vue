@@ -65,7 +65,7 @@ export default {
         {
           icon: 'mdi-human-dolly',
           title: 'Fornecedores',
-          to: '/Despesas'
+          to: '/Fornecedores'
         },
         {
           icon: 'mdi-cash-multiple',
