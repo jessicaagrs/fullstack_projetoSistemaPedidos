@@ -23,7 +23,7 @@ Status do Projeto: :heavy_check_mark: <!-- > :heavy_check_mark:--> Concluído <!
 ## Descrição do projeto :pencil:
 
 <p align="justify">
-  Crud básico com C# no backend e Vue no frontend.
+  Crud básico com C# no backend e Vue no frontend. A modelagem e o portótipo estão contidos nesse repositório.
 </p>
 
 ## Funcionalidades :wrench:
