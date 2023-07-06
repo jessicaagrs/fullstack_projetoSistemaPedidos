@@ -1,4 +1,5 @@
 ﻿using API.Models.Fornecedor;
+using API.Models.Pedido;
 using API.Models.Produto;
 using API.Models.TipoDespesa;
 using API.Models.Tributacao;
@@ -15,6 +16,7 @@ namespace API.Models
         public DbSet<Fornecedores> Fornecedor { get; set; }
         public DbSet<Tributacoes> Tributacao { get; set; }
         public DbSet<Produtos> Produto { get; set; }
+        public DbSet<Pedidos> Pedido { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

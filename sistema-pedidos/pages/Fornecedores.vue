@@ -101,7 +101,7 @@ export default {
         },
         async salvarFornecedor() {
             try {
-                if (this.fornecedores.razaoSocial != "" || this.fornecedores.cnpj != "") {
+                if (this.fornecedores.razaoSocial != null || this.fornecedores.cnpj != null || this.selectedTipoDespesa != null) {
                     let contemElemento = this.fornecedores.some(item => item.id === this.idEdicao);
                     if (contemElemento) {
                         this.putFornecedor();
@@ -110,7 +110,7 @@ export default {
                         this.postFornecedor();
                     }
                 } else {
-                    this.errorMessage = "Os campos descrição e grupo são obrigatórios;";
+                    this.errorMessage = "Os campos descrição e grupo são obrigatórios.";
                 }
             } catch (error) {
                 this.errorMessage = error;

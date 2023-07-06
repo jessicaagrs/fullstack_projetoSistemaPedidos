@@ -32,7 +32,7 @@
     <v-card class="pa-md-4 mx-lg-auto" max-width="800" variant="outlined">
       <v-card-item>
         <div>
-          <div class="text-caption">Obrigada pela oportunidade!</div>
+          <div class="text-caption">Independente do resultado, obrigada pela oportunidade.</div>
         </div>
       </v-card-item>
     </v-card>
@@ -62,6 +62,10 @@ export default {
       },
       {
         title: '5. O botão excluir também necessita que uma linha da tabela seja selecionada.',
+        value: 5,
+      },
+      {
+        title: '6. Por questões de prazo também optei por Pedidos só vincular 1 produto.',
         value: 5,
       },
       { type: 'divider' },

@@ -102,7 +102,7 @@ export default {
         },
         async salvarProduto() {
             try {
-                if (this.produtos.descricao != "") {
+                if (this.produtos.descricao != null || this.selectedFornecedor != null || this.selectedTributacao != null) {
                     let contemElemento = this.produtos.some(item => item.id === this.idEdicao);
                     if (contemElemento) {
                         this.putProduto();
@@ -111,7 +111,7 @@ export default {
                         this.postProduto();
                     }
                 } else {
-                    this.errorMessage = "O campo descrição é obrigatório";
+                    this.errorMessage = "Os campos descrição, fornecedor e despesa são obrigatórios.";
                 }
             } catch (error) {
                 this.errorMessage = error;

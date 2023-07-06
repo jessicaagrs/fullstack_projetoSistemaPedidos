@@ -101,8 +101,7 @@ export default {
         },
         async salvarTributacao() {
             try {
-                if (this.tributacoes.ncm != "" || this.tributacoes.aliquotaImposto != "" || this.tributacoes.descricao) {
-                    console.log(this.tributacoes.aliquotaImposto);
+                if (this.tributacoes.ncm != null || this.tributacoes.aliquotaImposto != null || this.tributacoes.descricao != null) {
                     let contemElemento = this.tributacoes.some(item => item.id === this.idEdicao);
                     if (contemElemento) {
                         this.putTributacao();
@@ -111,7 +110,7 @@ export default {
                         this.postTributacao();
                     }
                 } else {
-                    this.errorMessage = "Os campos descrição e grupo são obrigatórios;";
+                    this.errorMessage = "Os campos descrição, alíquota e grupo são obrigatórios.";
                 }
             } catch (error) {
                 this.errorMessage = error;
