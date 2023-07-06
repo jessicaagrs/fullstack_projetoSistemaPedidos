@@ -1,5 +1,4 @@
 ﻿using API.Models.TipoDespesa;
-using API.Models.TipoDespesa.TipoDespesa;
 
 namespace API.Services.TipoDespesa
 {

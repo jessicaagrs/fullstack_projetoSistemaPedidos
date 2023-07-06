@@ -1,10 +1,9 @@
 using API.Models;
 using API.Models.TipoDespesa;
-using API.Models.TipoDespesa.TipoDespesa;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace API.Controllers
+namespace API.Controllers.TipoDespesa
 {
     [ApiController]
     [Route("[controller]")]

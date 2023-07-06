@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace API.Models.TipoDespesa.TipoDespesa
+namespace API.Models.TipoDespesa
 {
     public interface ITipoDespesaService
     {

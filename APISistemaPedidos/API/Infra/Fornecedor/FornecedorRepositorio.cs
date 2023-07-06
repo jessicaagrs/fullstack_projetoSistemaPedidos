@@ -3,7 +3,7 @@ using API.Models.Fornecedor;
 using Microsoft.EntityFrameworkCore;
 
 
-namespace API.Infra.Fornecedor.Fornecedor
+namespace API.Infra.Fornecedor
 {
     public class FornecedorRepositorio : IFornecedorRepositorio
     {
