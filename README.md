@@ -29,17 +29,21 @@ Status do Projeto: :heavy_check_mark: <!-- > :heavy_check_mark:--> Concluído <!
 ## Funcionalidades :wrench:
 
 :heavy_check_mark: Incluir,excluir, atualizar e consultar despesas.
+
 :heavy_check_mark: Incluir,excluir, atualizar e consultar fornecedores.
+
 :heavy_check_mark: Incluir,excluir, atualizar e consultar tributação.
+
 :heavy_check_mark: Incluir,excluir, atualizar e consultar produtos.
+
 :heavy_check_mark: Incluir,excluir, atualizar e consultar pedidos.
 
 ## Layout :dash:
 
 
-![N|Solid](https://prnt.sc/dycjHtYYrqVu)
+![N|Solid](https://uploaddeimagens.com.br/images/004/534/817/full/Screenshot_1.png?1688682770)
 
-![N|Solid](https://prnt.sc/9rfmeDIyT9pj)
+![N|Solid](https://uploaddeimagens.com.br/images/004/534/819/full/Screenshot_2.png?1688682808)
 
 
 <!-- ## Pré-requisitos
