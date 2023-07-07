@@ -30,13 +30,9 @@ Status do Projeto: :heavy_check_mark: <!-- > :heavy_check_mark:--> Concluído <!
 
 :heavy_check_mark: Incluir,excluir, atualizar e consultar despesas.
 
-:heavy_check_mark: Incluir,excluir, atualizar e consultar fornecedores.
+:heavy_check_mark: Visualizar os dados através de tabela.
 
-:heavy_check_mark: Incluir,excluir, atualizar e consultar tributação.
 
-:heavy_check_mark: Incluir,excluir, atualizar e consultar produtos.
-
-:heavy_check_mark: Incluir,excluir, atualizar e consultar pedidos.
 
 ## Layout :dash:
 
