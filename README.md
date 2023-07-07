@@ -28,7 +28,7 @@ Status do Projeto: :heavy_check_mark: <!-- > :heavy_check_mark:--> Concluído <!
 
 ## Funcionalidades :wrench:
 
-:heavy_check_mark: Incluir,excluir, atualizar e consultar despesas.
+:heavy_check_mark: Incluir,excluir, atualizar e consultar dados.
 
 :heavy_check_mark: Visualizar os dados através de tabela.
 
