@@ -57,7 +57,7 @@ Liste todas as dependencias e libs que o usuário deve ter instalado na máquina
 No terminal, clone o projeto: 
 
 ```
-git clone https://github.com/jessicaagrs/desafioZDZCode.git
+git clone https://github.com/jessicaagrs/projeto_sistemaPedidos_VueAPI.git
 
 ```
 
