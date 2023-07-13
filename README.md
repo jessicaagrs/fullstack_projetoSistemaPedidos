@@ -1,7 +1,9 @@
 <h1>Sistema de Pedidos</h1> 
 
 <p align="center">
-  VUE, JAVASCRIPT, C#
+  <img src="https://uploaddeimagens.com.br/images/004/413/679/full/javacript.png?1680281578"/> 
+  <img src="https://uploaddeimagens.com.br/images/004/543/857/original/c_.png?1689275745" /> 
+  <img src="https://uploaddeimagens.com.br/images/004/543/860/full/vue.png?1689275780" />
 </p>
 
 Status do Projeto: :heavy_check_mark: <!-- > :heavy_check_mark:--> Concluído <!-- > :warning:-->
