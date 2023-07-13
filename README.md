@@ -1,4 +1,4 @@
-<h1>Desafio ZDZCode</h1> 
+<h1>Sistema de Pedidos</h1> 
 
 <p align="center">
   VUE, JAVASCRIPT, C#
@@ -23,7 +23,7 @@ Status do Projeto: :heavy_check_mark: <!-- > :heavy_check_mark:--> Concluído <!
 ## Descrição do projeto :pencil:
 
 <p align="justify">
-  Crud básico com C# no backend e Vue no frontend. A modelagem e o protótipo estão contidos nesse repositório.
+  Crud básico com C# no backend e Vue no frontend. 
 </p>
 
 ## Funcionalidades :wrench:
