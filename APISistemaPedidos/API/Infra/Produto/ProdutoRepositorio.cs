@@ -50,9 +50,12 @@ namespace API.Infra.Produto
 
         public IEnumerable<Produtos> ObterTodos()
         {
-            return _dbContext.Produto.Include(p => p.Tributacoes).Include(p => p.Fornecedores).ToList();
+            return _dbContext.Produto
+                .Include(p => p.Tributacoes)
+                .Include(p => p.Fornecedores)
+                    .ThenInclude(f => f.Despesa)  
+                .ToList();
         }
-
     }
 
 }

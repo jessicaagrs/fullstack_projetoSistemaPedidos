@@ -94,6 +94,5 @@ namespace API.Services.Fornecedor
             var fornecedorEmUso = _produtoRepositorio.ObterTodos().Where(f => f.Fornecedores?.Id == fornecedorId).Any();
             if(fornecedorEmUso) return true; return false;
         }
-
     }
 }

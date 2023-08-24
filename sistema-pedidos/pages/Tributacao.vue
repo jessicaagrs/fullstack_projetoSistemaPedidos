@@ -14,18 +14,15 @@
             <v-container>
                 <v-row class="d-flex justify-sparce-between align-center">
                     <v-col cols="12" md="4">
-                        <v-text-field v-model="tributacoes.ncm" :rules="[v => !!v || 'Obrigatório']" label="NCM:"
-                            required></v-text-field>
+                        <v-text-field v-model="tributacoes.ncm" label="NCM:"></v-text-field>
                     </v-col>
 
                     <v-col cols="12" md="4">
-                        <v-text-field v-model="tributacoes.aliquotaImposto" :rules="[v => !!v || 'Obrigatório']"
-                            label="Alíquota Imposto:" required></v-text-field>
+                        <v-text-field v-model="tributacoes.aliquotaImposto" label="Alíquota Imposto:"></v-text-field>
                     </v-col>
 
                     <v-col cols="12" md="4">
-                        <v-text-field v-model="tributacoes.descricao" :rules="[v => !!v || 'Obrigatório']" label="Descrição:"
-                            required></v-text-field>
+                        <v-text-field v-model="tributacoes.descricao" label="Descrição:"></v-text-field>
                     </v-col>
 
                     <v-col cols="12" md="4">
@@ -71,7 +68,7 @@ export default {
                     value: 'ncm',
                 },
                 { text: 'Alíquota Imposto', align: 'start', value: 'aliquotaImposto' },
-                { text: 'Descricao', align: 'start', value: 'descricao' },
+                { text: 'Descrição', align: 'start', value: 'descricao' },
             ],
             tributacoes: [],
             selected: [],
@@ -101,7 +98,7 @@ export default {
         },
         async salvarTributacao() {
             try {
-                if (this.tributacoes.ncm != null || this.tributacoes.aliquotaImposto != null || this.tributacoes.descricao != null) {
+                if (this.tributacoes.ncm != "" && this.tributacoes.aliquotaImposto != "" || this.tributacoes.descricao != "") {
                     let contemElemento = this.tributacoes.some(item => item.id === this.idEdicao);
                     if (contemElemento) {
                         this.putTributacao();
@@ -110,7 +107,7 @@ export default {
                         this.postTributacao();
                     }
                 } else {
-                    this.errorMessage = "Os campos descrição, alíquota e grupo são obrigatórios.";
+                    this.errorMessage = "Os campos descrição, alíquota e NCM são obrigatórios.";
                 }
             } catch (error) {
                 this.errorMessage = error;
@@ -131,7 +128,7 @@ export default {
                 this.tributacoes.aliquotaImposto = "";
                 this.tributacoes.descricao = "";
             } catch (error) {
-                this.errorMessage = error;
+                this.errorMessage = error.response.data;
             }
         },
         async postTributacao() {
@@ -148,7 +145,7 @@ export default {
                 this.tributacoes.aliquotaImposto = "";
                 this.tributacoes.descricao = "";
             } catch (error) {
-                this.errorMessage = error;
+                this.errorMessage = error.response.data;
             }
         },
         async getTributacao() {
@@ -156,7 +153,7 @@ export default {
                 const response = await this.$axios.get('https://localhost:7054/Tributacao');
                 this.tributacoes = response.data;
             } catch (error) {
-                this.errorMessage = error;
+                this.errorMessage = error.response.data;
             }
         },
         async deleteTributacao() {
@@ -171,7 +168,7 @@ export default {
                     this.errorMessage = "Nenhum item foi selecionado ou mais de uma linha. Nesse caso selecione apenas um.";
                 }
             } catch (error) {
-                this.errorMessage = error;
+                this.errorMessage = error.response.data;
             }
         },
 

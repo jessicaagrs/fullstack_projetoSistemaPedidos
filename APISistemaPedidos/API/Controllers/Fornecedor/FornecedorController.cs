@@ -3,6 +3,7 @@ using API.Models.Fornecedor;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
+
 namespace API.Controllers.Fornecedor
 {
     [ApiController]

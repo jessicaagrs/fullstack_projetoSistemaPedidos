@@ -20,14 +20,13 @@
                     </v-col>
                     <v-col cols="12" md="4">
                         <v-select :items="produtos" density="compact" label="Produto" item-text="descricao" item-value="id"
-                            v-model="selectedProduto" :rules="[v => !!v || 'Obrigatório']" required></v-select>
+                            v-model="selectedProduto"></v-select>
                     </v-col>
                     <v-col cols="12" md="4">
-                        <v-text-field v-model="pedidos.valor" :rules="[v => !!v || 'Obrigatório']" label="Valor:"
-                            required></v-text-field>
+                        <v-text-field v-model="pedidos.valor" label="Valor:"></v-text-field>
                     </v-col>
                     <v-col cols="12" md="4">
-                        <v-date-picker v-model="selectedDate" color="primary" label="Selecione uma data" :rules="[v => !!v || 'Obrigatório']" required></v-date-picker>
+                        <v-date-picker v-model="selectedDate" color="primary" label="Selecione uma data"></v-date-picker>
                     </v-col>
                     <v-col cols="12" md="4">
                         <v-btn color="primary" @click="salvarPedido">
@@ -137,7 +136,7 @@ export default {
                 this.pedidos.valor = "";
                 this.pedidos.dataCriacao = "";
             } catch (error) {
-                this.errorMessage = error;
+                this.errorMessage = error.response.data;
             }
         },
         async postPedido() {
@@ -155,7 +154,7 @@ export default {
                 this.pedidos.valor = "";
                 this.pedidos.dataCriacao = "";
             } catch (error) {
-                this.errorMessage = error;
+                this.errorMessage = error.response.data;
             }
         },
         async getProdutos() {
@@ -163,7 +162,7 @@ export default {
                 const response = await this.$axios.get('https://localhost:7054/Produto');
                 this.produtos = response.data;
             } catch (error) {
-                this.errorMessage = error;
+                this.errorMessage = error.response.data;
             }
         },
         async getPedidos() {
@@ -171,7 +170,7 @@ export default {
                 const response = await this.$axios.get('https://localhost:7054/Pedido');
                 this.pedidos = response.data;
             } catch (error) {
-                this.errorMessage = error;
+                this.errorMessage = error.response.data;
             }
         },
         async deletePedido() {
@@ -186,7 +185,7 @@ export default {
                     this.errorMessage = "Nenhum item foi selecionado ou mais de uma linha. Nesse caso selecione apenas um.";
                 }
             } catch (error) {
-                this.errorMessage = error;
+                this.errorMessage = error.response.data;
             }
         },
     },

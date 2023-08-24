@@ -39,7 +39,7 @@
 
         </v-data-table>
 
-        <v-container class="d-flex justify-start mb-6 bg-surface-variant">
+        <v-container class="d-flex justify-left mb-6 bg-surface-variant">
             <v-btn class="ma-2 pa-2" color="error" @click="deleteProduto">
                 Excluir
             </v-btn>
@@ -63,10 +63,20 @@ export default {
             headers: [
                 {
                     text: 'Descrição',
-                    align: 'start',
+                    align: 'left',
                     sortable: false,
                     value: 'descricao',
                 },
+                { text: 'Código Fornecedor', align: 'left', value: 'fornecedorId' },
+                { text: 'Nome Fornecedor', align: 'left', value: 'fornecedores.razaoSocial' },
+                { text: 'CNPJ Fornecedor', align: 'left', value: 'fornecedores.cnpj' },
+                { text: 'Código Despesa', align: 'left', value: 'fornecedores.despesa.id' },
+                { text: 'Descrição Despesa', align: 'left', value: 'fornecedores.despesa.descricao' },
+                { text: 'Grupo Despesa', align: 'left', value: 'fornecedores.despesa.grupo' },
+                { text: 'Código Tributação', align: 'left', value: 'tributacaoId' },
+                { text: 'NCM Tributação', align: 'left', value: 'tributacoes.ncm' },
+                { text: 'NCM Descrição', align: 'left', value: 'tributacoes.descricao' },
+                { text: 'Impostos', align: 'left', value: 'tributacoes.aliquotaImposto' },
             ],
             produtos: [],
             selected: [],
@@ -102,7 +112,7 @@ export default {
         },
         async salvarProduto() {
             try {
-                if (this.produtos.descricao != null || this.selectedFornecedor != null || this.selectedTributacao != null) {
+                if (this.produtos.descricao != "" && this.selectedFornecedor != null && this.selectedTributacao != null) {
                     let contemElemento = this.produtos.some(item => item.id === this.idEdicao);
                     if (contemElemento) {
                         this.putProduto();
@@ -129,7 +139,7 @@ export default {
                 await this.getProdutos();
                 this.produtos.descricao = "";
             } catch (error) {
-                this.errorMessage = error;
+                this.errorMessage = error.response.data;
             }
         },
         async postProduto() {
@@ -143,7 +153,7 @@ export default {
                 await this.getProdutos();
                 this.produtos.descricao = "";
             } catch (error) {
-                this.errorMessage = error;
+                this.errorMessage = error.response.data;
             }
         },
         async getFornecedores() {
@@ -151,7 +161,7 @@ export default {
                 const response = await this.$axios.get('https://localhost:7054/Fornecedor');
                 this.fornecedores = response.data;
             } catch (error) {
-                this.errorMessage = error;
+                this.errorMessage = error.response.data;
             }
         },
         async getTributacoes() {
@@ -159,7 +169,7 @@ export default {
                 const response = await this.$axios.get('https://localhost:7054/Tributacao');
                 this.tributacoes = response.data;
             } catch (error) {
-                this.errorMessage = error;
+                this.errorMessage = error.response.data;
             }
         },
         async getProdutos() {
@@ -167,7 +177,7 @@ export default {
                 const response = await this.$axios.get('https://localhost:7054/Produto');
                 this.produtos = response.data;
             } catch (error) {
-                this.errorMessage = error;
+                this.errorMessage = error.response.data;
             }
         },
         async deleteProduto() {
@@ -182,10 +192,9 @@ export default {
                     this.errorMessage = "Nenhum item foi selecionado ou mais de uma linha. Nesse caso selecione apenas um.";
                 }
             } catch (error) {
-                this.errorMessage = error;
+                this.errorMessage = error.response.data;
             }
         },
-
     },
 };
 </script>

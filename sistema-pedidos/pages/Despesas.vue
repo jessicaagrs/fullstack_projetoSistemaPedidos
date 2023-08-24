@@ -14,13 +14,11 @@
             <v-container>
                 <v-row class="d-flex justify-center align-center">
                     <v-col cols="12" md="4">
-                        <v-text-field v-model="tipoDespesa.descricao" :rules="[v => !!v || 'Obrigatório']"
-                            label="Descrição:" required></v-text-field>
+                        <v-text-field v-model="tipoDespesa.descricao" label="Descrição:"></v-text-field>
                     </v-col>
 
                     <v-col cols="12" md="4">
-                        <v-text-field v-model="tipoDespesa.grupo" :rules="[v => !!v || 'Obrigatório']" label="Grupo:"
-                            required></v-text-field>
+                        <v-text-field v-model="tipoDespesa.grupo" label="Grupo:"></v-text-field>
                     </v-col>
                     <v-col cols="12" md="4">
                         <v-btn color="primary" @click="salvarTipoDespesa">
@@ -58,7 +56,7 @@ export default {
             },
             headers: [
                 {
-                    text: 'Descricao',
+                    text: 'Descrição',
                     align: 'start',
                     sortable: false,
                     value: 'descricao',
@@ -93,7 +91,7 @@ export default {
         },
         async salvarTipoDespesa() {
             try {
-                if (this.tipoDespesa.descricao != "" || this.tipoDespesa.grupo != "") {
+                if (this.tipoDespesa.descricao != "" && this.tipoDespesa.grupo != "") {
                     let contemElemento = this.tipoDespesas.some(item => item.id === this.idEdicao);
                     if (contemElemento) {
                         this.putTipoDespesa();
@@ -102,7 +100,7 @@ export default {
                         this.postTipoDespesa();
                     }
                 } else {
-                    this.errorMessage = "Os campos descrição e grupo são obrigatórios;";
+                    this.errorMessage = "Os campos descrição e grupo são obrigatórios.";
                 }
             } catch (error) {
                 this.errorMessage = error;
@@ -120,7 +118,7 @@ export default {
                 this.tipoDespesa.descricao = "";
                 this.tipoDespesa.grupo = "";
             } catch (error) {
-                this.errorMessage = error;
+                this.errorMessage = error.response.data;
             }
         },
         async postTipoDespesa() {
@@ -134,7 +132,7 @@ export default {
                 this.tipoDespesa.descricao = "";
                 this.tipoDespesa.grupo = "";
             } catch (error) {
-                this.errorMessage = error;
+                this.errorMessage = error.response.data;
             }
         },
         async getTipoDespesas() {
@@ -142,7 +140,7 @@ export default {
                 const response = await this.$axios.get('https://localhost:7054/TipoDespesa');
                 this.tipoDespesas = response.data;
             } catch (error) {
-                this.errorMessage = error;
+                this.errorMessage = error.response.data;
             }
         },
         async deleteTipoDespesa() {
@@ -157,7 +155,7 @@ export default {
                     this.errorMessage = "Nenhum item foi selecionado ou mais de uma linha. Nesse caso selecione apenas um.";
                 }
             } catch (error) {
-                this.errorMessage = error;
+                this.errorMessage = error.response.data;
             }
         },
 

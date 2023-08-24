@@ -14,13 +14,11 @@
             <v-container>
                 <v-row class="d-flex justify-sparce-between align-center">
                     <v-col cols="12" md="4">
-                        <v-text-field v-model="fornecedores.razaoSocial" :rules="[v => !!v || 'Obrigatório']"
-                            label="Razão Social:" required></v-text-field>
+                        <v-text-field v-model="fornecedores.razaoSocial" label="Razão Social:" required></v-text-field>
                     </v-col>
 
                     <v-col cols="12" md="4">
-                        <v-text-field v-model="fornecedores.cnpj" :rules="[v => !!v || 'Obrigatório']" label="CNPJ:"
-                            required></v-text-field>
+                        <v-text-field v-model="fornecedores.cnpj" label="CNPJ:" required></v-text-field>
                     </v-col>
                     <v-col cols="12" md="4">
                         <v-select :items="despesas" density="compact" label="Despesa" item-text="descricao" item-value="id"
@@ -69,6 +67,9 @@ export default {
                     value: 'razaoSocial',
                 },
                 { text: 'CNPJ', align: 'start', value: 'cnpj' },
+                { text: 'Código Despesa', align: 'start', value: 'tipoDespesaId' },
+                { text: 'Descrição Despesa', align: 'start', value: 'despesa.descricao' },
+                { text: 'Grupo Despesa', align: 'start', value: 'despesa.grupo' },
             ],
             fornecedores: [],
             selected: [],
@@ -101,16 +102,18 @@ export default {
         },
         async salvarFornecedor() {
             try {
-                if (this.fornecedores.razaoSocial != null || this.fornecedores.cnpj != null || this.selectedTipoDespesa != null) {
+                if (this.fornecedores.razaoSocial != "" && this.fornecedores.cnpj != "" && this.selectedTipoDespesa != null) {
                     let contemElemento = this.fornecedores.some(item => item.id === this.idEdicao);
                     if (contemElemento) {
                         this.putFornecedor();
                         this.idEdicao = 0;
+                        this.selectedTipoDespesa = null;
                     } else {
                         this.postFornecedor();
+                        this.selectedTipoDespesa = null;
                     }
                 } else {
-                    this.errorMessage = "Os campos descrição e grupo são obrigatórios.";
+                    this.errorMessage = "Os campos razão social, CNPJ e tipo da despesa são obrigatórios.";
                 }
             } catch (error) {
                 this.errorMessage = error;
@@ -129,7 +132,7 @@ export default {
                 this.fornecedores.razaoSocial = "";
                 this.fornecedores.cnpj = "";
             } catch (error) {
-                this.errorMessage = error;
+                this.errorMessage = error.response.data;
             }
         },
         async postFornecedor() {
@@ -144,7 +147,7 @@ export default {
                 this.fornecedores.razaoSocial = "";
                 this.fornecedores.cnpj = "";
             } catch (error) {
-                this.errorMessage = error;
+                this.errorMessage = error.response.data;
             }
         },
         async getTipoDespesas() {
@@ -152,7 +155,7 @@ export default {
                 const response = await this.$axios.get('https://localhost:7054/TipoDespesa');
                 this.despesas = response.data;
             } catch (error) {
-                this.errorMessage = error;
+                this.errorMessage = error.response.data;
             }
         },
         async getFornecedores() {
@@ -160,7 +163,7 @@ export default {
                 const response = await this.$axios.get('https://localhost:7054/Fornecedor');
                 this.fornecedores = response.data;
             } catch (error) {
-                this.errorMessage = error;
+                this.errorMessage = error.response.data;
             }
         },
         async deleteFornecedor() {
@@ -175,7 +178,7 @@ export default {
                     this.errorMessage = "Nenhum item foi selecionado ou mais de uma linha. Nesse caso selecione apenas um.";
                 }
             } catch (error) {
-                this.errorMessage = error;
+                this.errorMessage = error.response.data;
             }
         },
 
