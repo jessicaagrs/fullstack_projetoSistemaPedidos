@@ -33,8 +33,8 @@ namespace API.Services.TipoDespesa
         {
             if (tipoDespesaId > 0)
             {
-                var tipoDespesas = _tipoDespesaRepositorio.Remover(tipoDespesaId);
-                return tipoDespesas;
+                var tipoDespesa = _tipoDespesaRepositorio.Remover(tipoDespesaId);
+                return tipoDespesa;
             }
             return null;
                 

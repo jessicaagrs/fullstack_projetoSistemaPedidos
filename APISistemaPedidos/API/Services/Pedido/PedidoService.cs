@@ -19,10 +19,11 @@ namespace API.Services.Produto
             if (pedido is null)
                 throw new Exception("Dados inválidos, favor revisar o preenchimento");
 
-            var produtoExiste = ValidarProduto(pedido.ProdutoId);
+            //var teste = _produtoRepositorio.ObterTodos().FirstOrDefault(t => t.Id == 1);
+            //pedido.ProdutosPedido.Add(teste);
 
-            if (!produtoExiste)
-                throw new Exception("Produto não é válido.");
+            if (pedido.ProdutosPedido != null)
+                ValidarProdutos(pedido.ProdutosPedido);
 
             var pedidos = _pedidoRepositorio.Adicionar(pedido);
             return pedidos;
@@ -33,10 +34,8 @@ namespace API.Services.Produto
             if (pedido is null)
                 throw new Exception("Dados inválidos, favor revisar o preenchimento");
 
-            var produtoExiste = ValidarProduto(pedido.ProdutoId);
-
-            if (!produtoExiste)
-                throw new Exception("Produto não é válido.");
+            if (pedido.ProdutosPedido != null)
+                ValidarProdutos(pedido.ProdutosPedido);
 
             var pedidos = _pedidoRepositorio.Atualizar(pedido);
             return pedidos;
@@ -46,8 +45,8 @@ namespace API.Services.Produto
         {
             if (pedidoId > 0)
             {
-                var pedidos = _pedidoRepositorio.Remover(pedidoId);
-                return pedidos;
+                var pedido = _pedidoRepositorio.Remover(pedidoId);
+                return pedido;
             }
             return null;
 
@@ -58,10 +57,18 @@ namespace API.Services.Produto
             return _pedidoRepositorio.ObterTodos();
         }
 
-        public bool ValidarProduto(int produtoId)
+        private void ValidarProdutos(List<Produtos> produtos)
         {
-            var produtos = _produtoRepositorio.ObterTodos().ToList();
-            return produtos.Any(td => td.Id == produtoId);
+            if (produtos != null)
+            {
+                var produtosExistentes = _produtoRepositorio.ObterTodos();
+                foreach (var produto in produtos)
+                {
+                    var existe = produtosExistentes.FirstOrDefault(p => p.Descricao == produto.Descricao);
+                    if (existe == null)
+                        throw new Exception($"Produto não existente na base de dados {produto.Descricao}");
+                }
+            }
         }
 
     }

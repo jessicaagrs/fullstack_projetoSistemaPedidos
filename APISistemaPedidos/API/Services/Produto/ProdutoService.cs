@@ -1,4 +1,5 @@
 ﻿using API.Models.Fornecedor;
+using API.Models.Pedido;
 using API.Models.Produto;
 using API.Models.Tributacao;
 
@@ -9,12 +10,14 @@ namespace API.Services.Produto
         private readonly IProdutoRepositorio _produtoRepositorio;
         private readonly IFornecedorRepositorio _fornecedorRepositorio;
         private readonly ITributacaoRepositorio _tributacaoRepositorio;
+        private readonly IPedidoRepositorio _pedidoRepositorio;
 
-        public ProdutoService(IProdutoRepositorio produtoRepositorio, IFornecedorRepositorio fornecedorRepositorio, ITributacaoRepositorio tributacaoRepositorio)
+        public ProdutoService(IProdutoRepositorio produtoRepositorio, IFornecedorRepositorio fornecedorRepositorio, ITributacaoRepositorio tributacaoRepositorio, IPedidoRepositorio pedidoRepositorio)
         {
             _produtoRepositorio = produtoRepositorio;
             _fornecedorRepositorio = fornecedorRepositorio;
             _tributacaoRepositorio = tributacaoRepositorio;
+            _pedidoRepositorio = pedidoRepositorio;
         }
 
         public Produtos Adicionar(Produtos produto)
@@ -55,13 +58,16 @@ namespace API.Services.Produto
 
         public Produtos Remover(int produtoId)
         {
+            var produtoEmUso = EmUso(produtoId);
+            if (!produtoEmUso)
+                throw new Exception("O produto está vinculado a um pedido e não pode ser removido");
+
             if (produtoId > 0)
             {
-                var produtos = _produtoRepositorio.Remover(produtoId);
-                return produtos;
+                var produto = _produtoRepositorio.Remover(produtoId);
+                return produto;
             }
             return null;
-
         }
 
         public IEnumerable<Produtos> ObterTodos()
@@ -69,17 +75,24 @@ namespace API.Services.Produto
             return _produtoRepositorio.ObterTodos();
         }
 
-        public bool ValidarFornecedor(int fornecedorId)
+        private bool ValidarFornecedor(int fornecedorId)
         {
-            var fornecedores = _fornecedorRepositorio.ObterTodos().ToList();
-            return fornecedores.Any(td => td.Id == fornecedorId);
+            var fornecedorExiste = _fornecedorRepositorio.ObterTodos().Any(td => td.Id == fornecedorId);
+            return fornecedorExiste;
         }
 
-        public bool ValidarTributacao(int tributacaoId)
+        private bool ValidarTributacao(int tributacaoId)
         {
-            var tributacoes = _tributacaoRepositorio.ObterTodos().ToList();
-            return tributacoes.Any(td => td.Id == tributacaoId);
+            var tributacaoExiste = _tributacaoRepositorio.ObterTodos().Any(td => td.Id == tributacaoId);
+            return tributacaoExiste;
         }
 
+        private bool EmUso(int produtoId)
+        {
+            var produtoEmUso = _pedidoRepositorio.ObterTodos()
+                .Any(p => p.ProdutosPedido.Any(x => x.Id == produtoId));
+
+            return produtoEmUso;
+        }
     }
 }

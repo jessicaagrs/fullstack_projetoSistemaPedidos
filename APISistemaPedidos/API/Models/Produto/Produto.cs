@@ -1,20 +1,24 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
-using API.Models.TipoDespesa;
+using API.Models.Fornecedor;
+using API.Models.Tributacao;
 
 namespace API.Models.Produto
 {
     public class Produtos
     {
-        [Key]
         public int Id { get; set; }
         public string Descricao { get; set; }
 
-        [ForeignKey("Fornecedores")]
         public int FornecedorId { get; set; }
 
-        [ForeignKey("Tributacoes")]
+        [ForeignKey("FornecedorId")]
+        public Fornecedores? Fornecedores { get; set; }
+
         public int TributacaoId { get; set; }
+
+        [ForeignKey("TributacaoId")]
+        public Tributacoes? Tributacoes { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using API.Models.Pedido;
+using API.Models.Produto;
 
 namespace API.Models.Pedido
 {

@@ -11,8 +11,9 @@ namespace API.Models.Fornecedor
         public int Id { get; set; }
         public string RazaoSocial { get; set; }
         public string Cnpj { get; set; }
-
-        [ForeignKey("TipoDespesas")]
         public int TipoDespesaId { get; set; }
+
+        [ForeignKey("TipoDespesaId")]
+        public TipoDespesas? Despesa { get; set; }
     }
 }

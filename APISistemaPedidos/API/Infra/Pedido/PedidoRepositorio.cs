@@ -50,9 +50,8 @@ namespace API.Infra.Pedido
 
         public IEnumerable<Pedidos> ObterTodos()
         {
-            return _dbContext.Pedido.ToList();
+            return _dbContext.Pedido.Include(p => p.ProdutosPedido).ToList();
         }
-
     }
 
 }

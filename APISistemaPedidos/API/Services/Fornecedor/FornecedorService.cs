@@ -1,5 +1,7 @@
 ﻿using API.Models.Fornecedor;
+using API.Models.Produto;
 using API.Models.TipoDespesa;
+using System.Text.RegularExpressions;
 
 namespace API.Services.Fornecedor
 {
@@ -7,17 +9,24 @@ namespace API.Services.Fornecedor
     {
         private readonly IFornecedorRepositorio _fornecedorRepositorio;
         private readonly ITipoDespesaRepositorio _tipoDespesaRepositorio;
+        private readonly IProdutoRepositorio _produtoRepositorio;
 
-        public FornecedorService(IFornecedorRepositorio fornecedorRepositorio, ITipoDespesaRepositorio tipoDespesaRepositorio)
+        public FornecedorService(IFornecedorRepositorio fornecedorRepositorio, ITipoDespesaRepositorio tipoDespesaRepositorio, IProdutoRepositorio produtoRepositorio)
         {
             _fornecedorRepositorio = fornecedorRepositorio;
             _tipoDespesaRepositorio = tipoDespesaRepositorio;
+            _produtoRepositorio = produtoRepositorio;
         }
 
         public Fornecedores Adicionar(Fornecedores fornecedor)
         {
             if (fornecedor is null)
                 throw new Exception("Dados inválidos, favor revisar o preenchimento");
+
+            var cnpjValido = ValidarCnpjFornecedor(fornecedor);
+
+            if(!cnpjValido)
+                throw new Exception("O número de caracteres informado para o CNPJ/CPF está incorreto.");
 
             var tipoDespesaValida = ValidarTipoDespesa(fornecedor.TipoDespesaId);
 
@@ -33,6 +42,11 @@ namespace API.Services.Fornecedor
             if (fornecedor is null)
                 throw new Exception("Dados inválidos, favor revisar o preenchimento");
 
+            var cnpjValido = ValidarCnpjFornecedor(fornecedor);
+
+            if (!cnpjValido)
+                throw new Exception("O número de caracteres informado para o CNPJ/CPF está incorreto.");
+
             var tipoDespesaValida = ValidarTipoDespesa(fornecedor.TipoDespesaId);
 
             if (!tipoDespesaValida)
@@ -44,13 +58,17 @@ namespace API.Services.Fornecedor
 
         public Fornecedores Remover(int fornecedorId)
         {
+            var fornecedorVinculado = EmUso(fornecedorId);
+            if (fornecedorVinculado)
+                throw new Exception("O fornecedor está vinculado a um produto e não pode ser removido.");
+
             if (fornecedorId > 0)
             {
-                var fornecedores = _fornecedorRepositorio.Remover(fornecedorId);
-                return fornecedores;
+                var fornecedor = _fornecedorRepositorio.Remover(fornecedorId);
+                return fornecedor;
             }
-            return null;
 
+            return null;
         }
 
         public IEnumerable<Fornecedores> ObterTodos()
@@ -58,10 +76,23 @@ namespace API.Services.Fornecedor
             return _fornecedorRepositorio.ObterTodos();
         }
 
-        public bool ValidarTipoDespesa(int tipoDespesaId)
+        private bool ValidarTipoDespesa(int tipoDespesaId)
         {
             var tipoDespesas = _tipoDespesaRepositorio.ObterTodos().ToList();
             return tipoDespesas.Any(td => td.Id == tipoDespesaId);
+        }
+
+        private bool ValidarCnpjFornecedor(Fornecedores fornecedor)
+        {
+            string cnpjNumeros = Regex.Replace(fornecedor.Cnpj, @"[.\-/]", "");
+
+            if (cnpjNumeros.Length == 11 || cnpjNumeros.Length == 14) return true; return false;
+        }
+
+        private bool EmUso(int fornecedorId)
+        {
+            var fornecedorEmUso = _produtoRepositorio.ObterTodos().Where(f => f.Fornecedores?.Id == fornecedorId).Any();
+            if(fornecedorEmUso) return true; return false;
         }
 
     }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "JpVSZypz9Avnq/JzsFLFfBlcRnwXQ6I3XrAgROAzyS9sdUrPHS3xUYuD3/KT/lQxJb3j3mhuQP8PJ9jbATWFNA==",
+  "dgSpecHash": "uI7nBEaDG1Nz/iIpCretplnTXw1j1Y+ppye47IkNNOzwHh4sOB0dEsHUpS11IQd6ktdDD3t1arINTNg4NPy3Mw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\BrGaap\\Documents\\JESSICA\\sistemaPedidos\\APISistemaPedidos\\API\\API.csproj",
+  "projectFilePath": "C:\\Users\\BrGaap\\Documents\\JESSICA\\projeto_sistemaPedidos_VueAPI\\APISistemaPedidos\\API\\API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\BrGaap\\.nuget\\packages\\microsoft.aspnetcore.connections.abstractions\\6.0.8\\microsoft.aspnetcore.connections.abstractions.6.0.8.nupkg.sha512",
     "C:\\Users\\BrGaap\\.nuget\\packages\\microsoft.aspnetcore.signalr.common\\6.0.8\\microsoft.aspnetcore.signalr.common.6.0.8.nupkg.sha512",

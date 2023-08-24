@@ -50,7 +50,7 @@ namespace API.Infra.Fornecedor
 
         public IEnumerable<Fornecedores> ObterTodos()
         {
-            return _dbContext.Fornecedor.ToList();
+            return _dbContext.Fornecedor.Include(f => f.Despesa).ToList();
         }
 
     }

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\BrGaap\\Documents\\JESSICA\\sistemaPedidos\\APISistemaPedidos\\API\\API.csproj": {}
+    "C:\\Users\\BrGaap\\Documents\\JESSICA\\projeto_sistemaPedidos_VueAPI\\APISistemaPedidos\\API\\API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\BrGaap\\Documents\\JESSICA\\sistemaPedidos\\APISistemaPedidos\\API\\API.csproj": {
+    "C:\\Users\\BrGaap\\Documents\\JESSICA\\projeto_sistemaPedidos_VueAPI\\APISistemaPedidos\\API\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\BrGaap\\Documents\\JESSICA\\sistemaPedidos\\APISistemaPedidos\\API\\API.csproj",
+        "projectUniqueName": "C:\\Users\\BrGaap\\Documents\\JESSICA\\projeto_sistemaPedidos_VueAPI\\APISistemaPedidos\\API\\API.csproj",
         "projectName": "API",
-        "projectPath": "C:\\Users\\BrGaap\\Documents\\JESSICA\\sistemaPedidos\\APISistemaPedidos\\API\\API.csproj",
+        "projectPath": "C:\\Users\\BrGaap\\Documents\\JESSICA\\projeto_sistemaPedidos_VueAPI\\APISistemaPedidos\\API\\API.csproj",
         "packagesPath": "C:\\Users\\BrGaap\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\BrGaap\\Documents\\JESSICA\\sistemaPedidos\\APISistemaPedidos\\API\\obj\\",
+        "outputPath": "C:\\Users\\BrGaap\\Documents\\JESSICA\\projeto_sistemaPedidos_VueAPI\\APISistemaPedidos\\API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
