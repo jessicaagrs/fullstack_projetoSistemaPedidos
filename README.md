@@ -62,6 +62,7 @@ No terminal, clone o projeto:
 git clone https://github.com/jessicaagrs/projeto_sistemaPedidos_VueAPI.git
 
 ```
+Na pasta APISistemaPedidos procure pelo arquivo APISistemaPedidos.sln e execute com o Visual Studio 2022. Após abra a pasta sistema-pedidos e execute ela com Visual Studio Code com o comando "npm run dev" no terminal. O caminho localhost:3000 ficará disponível para ser aberto no navegador. Os dados inseridos nos módulos fica disponíveis enquanto a API estiver aberta, pois foi usando como banco de dados inMemoryDatabase.
 
 
 <!-- ## Como rodar os testes
