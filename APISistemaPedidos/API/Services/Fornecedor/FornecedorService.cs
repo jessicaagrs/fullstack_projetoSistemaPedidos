@@ -28,11 +28,7 @@ namespace API.Services.Fornecedor
             if(!cnpjValido)
                 throw new Exception("O número de caracteres informado para o CNPJ/CPF está incorreto.");
 
-            var tipoDespesaValida = ValidarTipoDespesa(fornecedor.TipoDespesaId);
-
-            if (!tipoDespesaValida)
-                throw new Exception("Despesa inválida.");
-
+            fornecedor.Validar();
             var fornecedores = _fornecedorRepositorio.Adicionar(fornecedor);
             return fornecedores;
         }
@@ -47,11 +43,7 @@ namespace API.Services.Fornecedor
             if (!cnpjValido)
                 throw new Exception("O número de caracteres informado para o CNPJ/CPF está incorreto.");
 
-            var tipoDespesaValida = ValidarTipoDespesa(fornecedor.TipoDespesaId);
-
-            if (!tipoDespesaValida)
-                throw new Exception("Despesa inválida.");
-
+            fornecedor.Validar();
             var fornecedores = _fornecedorRepositorio.Atualizar(fornecedor);
             return fornecedores;
         }
@@ -76,15 +68,10 @@ namespace API.Services.Fornecedor
             return _fornecedorRepositorio.ObterTodos();
         }
 
-        private bool ValidarTipoDespesa(int tipoDespesaId)
-        {
-            var tipoDespesas = _tipoDespesaRepositorio.ObterTodos().ToList();
-            return tipoDespesas.Any(td => td.Id == tipoDespesaId);
-        }
-
         private bool ValidarCnpjFornecedor(Fornecedores fornecedor)
         {
             string cnpjNumeros = Regex.Replace(fornecedor.Cnpj, @"[.\-/]", "");
+            fornecedor.Cnpj = cnpjNumeros;
 
             if (cnpjNumeros.Length == 11 || cnpjNumeros.Length == 14) return true; return false;
         }

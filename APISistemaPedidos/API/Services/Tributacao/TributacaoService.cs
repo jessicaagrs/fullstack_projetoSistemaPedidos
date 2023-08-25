@@ -25,6 +25,7 @@ namespace API.Services.Tributacao
             if (!ncmValido)
                 throw new Exception("A quantidade de caracteres de NCM é inválido");
 
+            tributacao.Validar();
             var tributacoes = _tributacaoRepositorio.Adicionar(tributacao);
             return tributacoes;
         }
@@ -38,6 +39,7 @@ namespace API.Services.Tributacao
             if (!ncmValido)
                 throw new Exception("A quantidade de caracteres de NCM é inválido");
 
+            tributacao.Validar();
             var tributacoes = _tributacaoRepositorio.Atualizar(tributacao);
             return tributacoes;
         }

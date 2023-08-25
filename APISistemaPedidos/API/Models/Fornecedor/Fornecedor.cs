@@ -15,5 +15,14 @@ namespace API.Models.Fornecedor
 
         [ForeignKey("TipoDespesaId")]
         public TipoDespesas? Despesa { get; set; }
+
+        public void Validar()
+        {
+            if (RazaoSocial.Length == 0 || Cnpj.Length == 0)
+                throw new Exception("Razão Social ou CNPJ não foram preenchidos.");
+
+            if (TipoDespesaId == 0)
+                throw new Exception("É necessário vincular uma despesa ao fornecedor.");
+        }
     }
 }

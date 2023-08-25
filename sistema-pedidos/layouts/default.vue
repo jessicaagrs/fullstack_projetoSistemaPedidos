@@ -14,7 +14,7 @@
       </v-list>
     </v-navigation-drawer>
     <v-app-bar :clipped-left="clipped" fixed app>
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
+      <v-app-bar-nav-icon @click.stop="toggleMiniVariant" />
       <v-toolbar-title>{{ title }}</v-toolbar-title>
       <v-spacer />
       <v-btn icon @click.stop="rightDrawer = !rightDrawer">
@@ -88,6 +88,11 @@ export default {
       rightDrawer: false,
       title: 'Sistema de Pedidos'
     };
-  }
+  },
+  methods: {
+    toggleMiniVariant() {
+      this.miniVariant = !this.miniVariant;
+    },
+  },
 };
 </script>

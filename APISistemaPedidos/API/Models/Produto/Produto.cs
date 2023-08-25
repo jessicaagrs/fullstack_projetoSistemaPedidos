@@ -20,5 +20,14 @@ namespace API.Models.Produto
 
         [ForeignKey("TributacaoId")]
         public Tributacoes? Tributacoes { get; set; }
+
+        public void Validar()
+        {
+            if (Descricao.Length == 0)
+                throw new Exception("É necessário informar uma descrição para o produto.");
+
+            if (FornecedorId == 0 || TributacaoId == 0) 
+                throw new Exception("O produto deve ser vinculado a um fornecedor e despesa.");
+        }
     }
 }

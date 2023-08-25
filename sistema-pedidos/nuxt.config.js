@@ -6,8 +6,8 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: '%s - sistema-pedidos',
-    title: 'sistema-pedidos',
+    titleTemplate: '',
+    title: 'Sistema Pedidos',
     htmlAttrs: {
       lang: 'en'
     },

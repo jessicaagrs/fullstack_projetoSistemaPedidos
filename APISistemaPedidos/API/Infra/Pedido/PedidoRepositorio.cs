@@ -16,6 +16,10 @@ namespace API.Infra.Pedido
 
         public Pedidos Adicionar(Pedidos pedido)
         {
+            foreach (var produto in pedido.ProdutosPedido)
+            {
+                _dbContext.Attach(produto);
+            }
             _dbContext.Pedido.Add(pedido);
             _dbContext.SaveChanges();
             return pedido;
@@ -23,6 +27,10 @@ namespace API.Infra.Pedido
 
         public Pedidos Atualizar(Pedidos pedido)
         {
+            foreach (var produto in pedido.ProdutosPedido)
+            {
+                _dbContext.Attach(produto);
+            }
             _dbContext.Pedido.Update(pedido);
             _dbContext.SaveChanges();
             return pedido;
@@ -47,11 +55,21 @@ namespace API.Infra.Pedido
 
             return pedido;
         }
-
         public IEnumerable<Pedidos> ObterTodos()
         {
-            return _dbContext.Pedido.Include(p => p.ProdutosPedido).ToList();
+            var pedidos = _dbContext.Pedido
+                .Include(p => p.ProdutosPedido)
+                    .ThenInclude(pp => pp.Fornecedores)
+                .ToList();
+
+            foreach (var pedido in pedidos)
+            {
+                foreach (var produtoPedido in pedido.ProdutosPedido)
+                {
+                    _dbContext.Entry(produtoPedido).Reference(pp => pp.Tributacoes).Load();
+                }
+            }
+            return pedidos;
         }
     }
-
 }

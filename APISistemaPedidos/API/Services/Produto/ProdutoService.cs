@@ -25,15 +25,7 @@ namespace API.Services.Produto
             if (produto is null)
                 throw new Exception("Dados inválidos, favor revisar o preenchimento");
 
-            var fornecedorExiste = ValidarFornecedor(produto.FornecedorId);
-            var tributacaoExiste = ValidarTributacao(produto.TributacaoId);
-
-            if (!fornecedorExiste)
-                throw new Exception("Fornecedor não é válido.");
-
-            if (!tributacaoExiste)
-                throw new Exception("Tributação não é válida.");
-
+            produto.Validar();
             var produtos = _produtoRepositorio.Adicionar(produto);
             return produtos;
         }
@@ -43,15 +35,7 @@ namespace API.Services.Produto
             if (produto is null)
                 throw new Exception("Dados inválidos, favor revisar o preenchimento");
 
-            var fornecedorExiste = ValidarFornecedor(produto.FornecedorId);
-            var tributacaoExiste = ValidarTributacao(produto.TributacaoId);
-
-            if (!fornecedorExiste)
-                throw new Exception("Fornecedor não é válido.");
-
-            if (!tributacaoExiste)
-                throw new Exception("Tributação não é válida.");
-
+            produto.Validar();
             var produtos = _produtoRepositorio.Atualizar(produto);
             return produtos;
         }
@@ -73,18 +57,6 @@ namespace API.Services.Produto
         public IEnumerable<Produtos> ObterTodos()
         {
             return _produtoRepositorio.ObterTodos();
-        }
-
-        private bool ValidarFornecedor(int fornecedorId)
-        {
-            var fornecedorExiste = _fornecedorRepositorio.ObterTodos().Any(td => td.Id == fornecedorId);
-            return fornecedorExiste;
-        }
-
-        private bool ValidarTributacao(int tributacaoId)
-        {
-            var tributacaoExiste = _tributacaoRepositorio.ObterTodos().Any(td => td.Id == tributacaoId);
-            return tributacaoExiste;
         }
 
         private bool EmUso(int produtoId)

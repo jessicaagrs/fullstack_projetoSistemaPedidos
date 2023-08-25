@@ -1,75 +1,64 @@
 <template>
-  <div>
-    <v-card class="pa-md-4 mx-lg-auto" max-width="800" variant="outlined">
-      <v-card-item>
-        <div>
-          <div class="text-overline mb-1">
-            SISTEMA DE CADASTRO DE PEDIDOS AO FORNECEDOR
-          </div>
-          <div class="text-h6 mb-1">
-            Seja Bem-Vindo(a)!
-          </div>
-          <div>Esse projeto tem o objetivo de resolver o desafio proposto pela ZDZCode, referente a
-            vaga de Desenvolvedor(a). Abaixo um roteiro de como navegar por ele.</div>
+  <v-sheet
+    class="mx-auto"
+    elevation="8"
+    max-width="800"
+  >
+    <v-slide-group
+      v-model="currentIndex"
+      class="pa-4"
+      selected-class="bg-primary"
+      show-arrows
+    >
+      <v-slide-item
+        v-for="(image, index) in images"
+        :key="index"
+        v-slot="{ isSelected, toggle, selectedClass }"
+      >
+        <v-card
+          :class="['ma-4', selectedClass]"
+          height="500"
+          width="100%"
+          @click="toggle"
+        >
+          <img :src="image" alt="Slide Image" class="d-block w-100 h-100">
+        </v-card>
+      </v-slide-item>
+    </v-slide-group>
+
+    <v-expand-transition>
+      <v-sheet
+        v-if="currentIndex !== null"
+        height="50"
+      >
+        <div class="d-flex fill-height align-center justify-center">
+          <h3 class="text-h6">
+            <p>{{ imageTexts[currentIndex] }}</p> 
+          </h3>
         </div>
-      </v-card-item>
-    </v-card>
-    <v-card class="pa-md-4 mx-lg-auto" max-width="800">
-      <v-list>
-        <v-list-item-group>
-          <template v-for="(item, index) in items">
-            <v-divider v-if="item.type === 'divider'"></v-divider>
-            <v-subheader v-else-if="item.type === 'subheader'">{{ item.title }}</v-subheader>
-            <v-list-item v-else :key="item.value">
-              <v-list-item-content>
-                <v-list-item-title class="text-wrap">{{ item.title }}</v-list-item-title>
-              </v-list-item-content>
-            </v-list-item>
-          </template>
-        </v-list-item-group>
-      </v-list>
-    </v-card>
-    <v-card class="pa-md-4 mx-lg-auto" max-width="800" variant="outlined">
-      <v-card-item>
-        <div>
-          <div class="text-caption">Independente do resultado, obrigada pela oportunidade.</div>
-        </div>
-      </v-card-item>
-    </v-card>
-  </div>
+      </v-sheet>
+    </v-expand-transition>
+  </v-sheet>
 </template>
 
 <script>
 export default {
   data: () => ({
-    items: [
-      { type: 'subheader', title: 'Manual' },
-      {
-        title: '1. Os cadastros devem começar pelas despesas e seguir a sequencia: fornecedores, tributação, produtos e pedidos.',
-        value: 1,
-      },
-      {
-        title: '2. Em todas as páginas o mesmo layout e ações são iguais para fins de entrega dentro do prazo.',
-        value: 2,
-      },
-      {
-        title: '3. A função salvar verifica se está sendo feito um novo lançamento ou atualizando uma dado selecionado da tabela.',
-        value: 3,
-      },
-      {
-        title: '4. O botão editar acionado após selecionar uma linha replica os dados para os campos de preenchimento logo acima, também feito dessa forma para entrega dentro do prazo do desafio.',
-        value: 4,
-      },
-      {
-        title: '5. O botão excluir também necessita que uma linha da tabela seja selecionada.',
-        value: 5,
-      },
-      {
-        title: '6. Por questões de prazo também optei por Pedidos só vincular 1 produto.',
-        value: 5,
-      },
-      { type: 'divider' },
-    ],
+    currentIndex: null,
+    images: ['img1.jpg', 'img2.jpg', 'img3.jpg', 'img4.jpg','img5.jpg','img6.jpg'],
+    imageTexts: [
+      'O sistema permite vincular uma despesa ao seu pedido.',
+      'Cadastre fornecedores.',
+      'Informe os impostos de cada produto',
+      'Cadastre produtos.',
+      'Cadastre seus pedidos.',
+      'Edite, exclua ou visualize dados pelas tabelas em cada módulo.'
+    ]
   }),
+  methods: {
+    getImagePath(image) {
+      return `${process.env.BASE_URL}/${image}`;
+    }
+  }
 };
 </script>

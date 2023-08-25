@@ -19,12 +19,7 @@ namespace API.Services.Produto
             if (pedido is null)
                 throw new Exception("Dados inválidos, favor revisar o preenchimento");
 
-            //var teste = _produtoRepositorio.ObterTodos().FirstOrDefault(t => t.Id == 1);
-            //pedido.ProdutosPedido.Add(teste);
-
-            if (pedido.ProdutosPedido != null)
-                ValidarProdutos(pedido.ProdutosPedido);
-
+            pedido.Validar();
             var pedidos = _pedidoRepositorio.Adicionar(pedido);
             return pedidos;
         }
@@ -34,9 +29,7 @@ namespace API.Services.Produto
             if (pedido is null)
                 throw new Exception("Dados inválidos, favor revisar o preenchimento");
 
-            if (pedido.ProdutosPedido != null)
-                ValidarProdutos(pedido.ProdutosPedido);
-
+            pedido.Validar();
             var pedidos = _pedidoRepositorio.Atualizar(pedido);
             return pedidos;
         }
@@ -55,20 +48,6 @@ namespace API.Services.Produto
         public IEnumerable<Pedidos> ObterTodos()
         {
             return _pedidoRepositorio.ObterTodos();
-        }
-
-        private void ValidarProdutos(List<Produtos> produtos)
-        {
-            if (produtos != null)
-            {
-                var produtosExistentes = _produtoRepositorio.ObterTodos();
-                foreach (var produto in produtos)
-                {
-                    var existe = produtosExistentes.FirstOrDefault(p => p.Descricao == produto.Descricao);
-                    if (existe == null)
-                        throw new Exception($"Produto não existente na base de dados {produto.Descricao}");
-                }
-            }
         }
 
     }

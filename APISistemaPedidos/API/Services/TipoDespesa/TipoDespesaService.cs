@@ -1,14 +1,17 @@
-﻿using API.Models.TipoDespesa;
+﻿using API.Models.Fornecedor;
+using API.Models.TipoDespesa;
 
 namespace API.Services.TipoDespesa
 {
     public class TipoDespesaService : ITipoDespesaService
     {
         private readonly ITipoDespesaRepositorio _tipoDespesaRepositorio;
+        private readonly IFornecedorRepositorio _fornecedorRepositorio;
 
-        public TipoDespesaService(ITipoDespesaRepositorio tipoDespesaRepositorio)
+        public TipoDespesaService(ITipoDespesaRepositorio tipoDespesaRepositorio, IFornecedorRepositorio fornecedorRepositorio)
         {
             _tipoDespesaRepositorio = tipoDespesaRepositorio;
+            _fornecedorRepositorio = fornecedorRepositorio;
         }
 
         public TipoDespesas Adicionar(TipoDespesas tipoDespesa)
@@ -16,6 +19,7 @@ namespace API.Services.TipoDespesa
             if (tipoDespesa is null)
                 throw new Exception("Dados inválidos, favor revisar o preenchimento");
 
+            tipoDespesa.Validar();
            var tipoDespesas =  _tipoDespesaRepositorio.Adicionar(tipoDespesa);
             return tipoDespesas;
         }
@@ -25,12 +29,17 @@ namespace API.Services.TipoDespesa
             if (tipoDespesa is null)
                 throw new Exception("Dados inválidos, favor revisar o preenchimento");
 
-           var tipoDespesas = _tipoDespesaRepositorio.Atualizar(tipoDespesa);
+            tipoDespesa.Validar();
+            var tipoDespesas = _tipoDespesaRepositorio.Atualizar(tipoDespesa);
             return tipoDespesas;
         }
 
         public TipoDespesas Remover(int tipoDespesaId)
         {
+            var despesaVinculada = EmUso(tipoDespesaId);
+            if (despesaVinculada)
+                throw new Exception("A despesa está vinculada a um fornecedor e não pode ser removida.");
+
             if (tipoDespesaId > 0)
             {
                 var tipoDespesa = _tipoDespesaRepositorio.Remover(tipoDespesaId);
@@ -45,5 +54,10 @@ namespace API.Services.TipoDespesa
             return _tipoDespesaRepositorio.ObterTodos();
         }
 
+        private bool EmUso(int despesaId)
+        {
+            var despesaEmUso = _fornecedorRepositorio.ObterTodos().Where(f => f.TipoDespesaId == despesaId).Any();
+            if (despesaEmUso) return true; return false;
+        }
     }
 }

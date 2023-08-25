@@ -12,10 +12,6 @@ namespace API.Models
 {
     public class EFDBContext : DbContext
     {
-        public EFDBContext(DbContextOptions<EFDBContext> options) : base(options)
-        {
-
-        }
         public DbSet<TipoDespesas> TipoDespesa { get; set; }
         public DbSet<Fornecedores> Fornecedor { get; set; }
         public DbSet<Tributacoes> Tributacao { get; set; }

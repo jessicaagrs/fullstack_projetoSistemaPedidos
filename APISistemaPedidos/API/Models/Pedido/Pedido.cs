@@ -13,5 +13,15 @@ namespace API.Models.Pedido
         public decimal Valor { get; set; }
         public DateTime DataCriacao { get; set; } = DateTime.Now;
         public List<Produtos> ProdutosPedido { get; set; }
+
+        public void Validar()
+        {
+            if (Descricao.Length == 0)
+                throw new Exception("Uma descrição precisa ser informada");
+
+            if (Valor == 0 || ProdutosPedido.Count == 0) 
+                throw new Exception("Um valor e pelo menos um produto devem ser informados.");
+
+        }
     }
 }
