@@ -43,6 +43,8 @@ Status do Projeto: :heavy_check_mark: <!-- > :heavy_check_mark:--> Concluído <!
 
 ![N|Solid](https://uploaddeimagens.com.br/images/004/534/819/full/Screenshot_2.png?1688682808)
 
+![N|Solid](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM20yMGVwZjdjemQyY2plYXZlb25wdzNhMHV1ZHprdXFzcWhtNWl1cSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/av7YetfrArLyEBTWcx/giphy.gif)
+
 
 <!-- ## Pré-requisitos
 
