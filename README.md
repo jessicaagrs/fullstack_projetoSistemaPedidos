@@ -67,10 +67,10 @@ $ start devenv APISistemaPedidos.sln
 //frontend
 $ cd ..
 $ cd sistema-pedidos
-$ npm install -g nuxt
-
-
-
+$ npm install vue-server-renderer@2.7.14
+$ npm uninstall -g vue  npm install vue@2.7.14
+$ npm run dev
+$ start chrome "http://localhost:3000" (abrir mais um terminal para executar somente esse comando)
 ```
 Na pasta APISistemaPedidos procure pelo arquivo APISistemaPedidos.sln e execute com o Visual Studio 2022. Após abra a pasta sistema-pedidos e execute ela com Visual Studio Code com o comando "npm run dev" no terminal. O caminho localhost:3000 ficará disponível para ser aberto no navegador. Os dados inseridos nos módulos ficam disponíveis enquanto a API estiver aberta, pois foi usado como banco de dados inMemoryDatabase.
 
