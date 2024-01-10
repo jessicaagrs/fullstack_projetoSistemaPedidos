@@ -64,6 +64,9 @@ $ git clone https://github.com/jessicaagrs/projeto_sistemaPedidos_VueAPI.git
 $ cd projeto_sistemaPedidos_VueAPI/APISistemaPedidos
 $ start devenv APISistemaPedidos.sln
 
+Clicar no botão verde menu superior em API para executar.
+Obs: Rodar com Visual Studio 2022.
+
 //frontend
 $ cd ..
 $ cd sistema-pedidos
