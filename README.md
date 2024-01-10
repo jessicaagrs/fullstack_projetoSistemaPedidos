@@ -59,7 +59,17 @@ Liste todas as dependencias e libs que o usuário deve ter instalado na máquina
 No terminal, clone o projeto: 
 
 ```
-git clone https://github.com/jessicaagrs/projeto_sistemaPedidos_VueAPI.git
+//backend
+$ git clone https://github.com/jessicaagrs/projeto_sistemaPedidos_VueAPI.git
+$ cd projeto_sistemaPedidos_VueAPI/APISistemaPedidos
+$ start devenv APISistemaPedidos.sln
+
+//frontend
+$ cd ..
+$ cd sistema-pedidos
+$ npm install -g nuxt
+
+
 
 ```
 Na pasta APISistemaPedidos procure pelo arquivo APISistemaPedidos.sln e execute com o Visual Studio 2022. Após abra a pasta sistema-pedidos e execute ela com Visual Studio Code com o comando "npm run dev" no terminal. O caminho localhost:3000 ficará disponível para ser aberto no navegador. Os dados inseridos nos módulos ficam disponíveis enquanto a API estiver aberta, pois foi usado como banco de dados inMemoryDatabase.
