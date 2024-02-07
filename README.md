@@ -71,7 +71,6 @@ Obs: Rodar com Visual Studio 2022.
 $ cd ..
 $ cd sistema-pedidos
 $ npm install vue-server-renderer@2.7.14
-<!--$ npm uninstall -g vue  npm install vue@2.7.14-->
 $ npm run dev
 $ start chrome "http://localhost:3000" (abrir mais um terminal para executar somente esse comando)
 ```
